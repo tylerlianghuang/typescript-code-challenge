@@ -16,7 +16,7 @@ Your work will be evaluated primarily on:
 
 - Consistency of coding style.
 - Correct use of promises, including proper error handling.
-- Correct use of TypeScript, inclduing interface/object definitions.
+- Correct use of TypeScript, including interface/object definitions.
 - Absence of "callback hell".
 - Correct and complete unit test coverage.
 - General quality of code and technical communication.

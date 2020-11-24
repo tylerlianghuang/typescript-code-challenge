@@ -1,6 +1,6 @@
 # Sinefa TypeScript Challenge Instructions
 
-Write a Node script that transforms `data.json` into `data-transformed.json`. SHave a look at `example-output.json` to show how the data should be transformed.
+Write a Node script that transforms `data.json` into `data-transformed.json`. Have a look at `example-output.json` to show how the data should be transformed.
 
 ## General Approach and Assumptions
 

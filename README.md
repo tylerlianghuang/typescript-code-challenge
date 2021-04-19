@@ -1,4 +1,4 @@
-# Sinefa TypeScript Challenge Instructions
+# TypeScript Challenge Instructions
 
 Write a Node project that:
  1. reads in the file `data.json` transforms it into a format that matches `example-output.json`

@@ -4,7 +4,11 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyles = createGlobalStyle`
 html,
 body {
+    background-color: #F6F5F7;
     font-family: monospace;
+    *, ::before, ::after {
+      box-sizing: border-box;
+    }
 }
 `;
 

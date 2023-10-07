@@ -1,21 +1,31 @@
 import { CustomerListType } from '../types/types';
+import { Layout, Card, Stack, Text, Button } from './styles';
 import styled from 'styled-components';
 
-const Container = styled.div`
-  display: flex;
+const StyledH2 = styled.h2`
+  padding: 1.5rem 0px 1rem;
 `;
 
 const CustomerList = (props: CustomerListType) => {
   return (
-    <>
+    <Layout>
       {props.customers.map((customer) => (
-        <Container key={customer.id}>
-          <span>Customer name: {customer.name}</span>
-          <span>Customer address: {customer.address}</span>
-          <span>Customer id: {customer.id}</span>
-        </Container>
+        <Card key={customer.id}>
+          <StyledH2>Name: {customer.name}</StyledH2>
+          <Stack>
+            <Text>
+              Customer address:
+              <strong>{customer.address}</strong>
+            </Text>
+            <Text>
+              Customer id:
+              <strong>{customer.id}</strong>
+            </Text>
+            <Button>Order details</Button>
+          </Stack>
+        </Card>
       ))}
-    </>
+    </Layout>
   );
 };
 

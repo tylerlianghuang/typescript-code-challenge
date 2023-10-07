@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import { OrderDetailsType } from '../../types/types';
 import { connectToDatabase } from '../../lib/db';
+import { Card, Inline, Stack, Text, Category } from '../../components/styles';
 
 const OrderDetailsPage = (props: { orderDetails: OrderDetailsType }) => {
   return (
@@ -14,9 +15,32 @@ const OrderDetailsPage = (props: { orderDetails: OrderDetailsType }) => {
           content={`order creation date ${props.orderDetails.date} and its vendor ${props.orderDetails.vendor}`}
         />
       </Head>
-      <span>{props.orderDetails.vendor}</span>
-      <span>{props.orderDetails.date}</span>
-      <span>{props.orderDetails.customer}</span>
+      <Card>
+        <Stack>
+          <Text>
+            Vendor:
+            <strong>{props.orderDetails.vendor}</strong>
+          </Text>
+          <Text>
+            Date:
+            <strong>{props.orderDetails.date}</strong>
+          </Text>
+          <Text>
+            Customer:
+            <strong>{props.orderDetails.customer}</strong>
+          </Text>
+          <Inline>
+            {props.orderDetails.order.map((order) => (
+              <Category key={order.item}>
+                <strong>{order.item}</strong>
+                <p>{`quantity: ${order.quantity}`}</p>
+                <p>{`price: ${order.price}`}</p>
+                <p>{`revenue: ${order.revenue}`}</p>
+              </Category>
+            ))}
+          </Inline>
+        </Stack>
+      </Card>
     </Fragment>
   );
 };
@@ -59,7 +83,8 @@ export const getStaticProps = async (context: { params: { customerId: string } }
         orderDetails: {
           vendor: selectedCandidate.vendor,
           date: selectedCandidate.date,
-          customer: selectedCandidate.customer
+          customer: selectedCandidate.customer,
+          order: selectedCandidate.order
         }
       }
     }

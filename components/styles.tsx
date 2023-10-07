@@ -63,3 +63,23 @@ export const Button = styled.button`
     border: 0.0625rem solid #3d3b40;
   }
 `;
+
+export const Inline = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row:
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem 0px;
+
+  border-top: 1px solid #E5E3E8;
+
+  div:last-child {
+    border-right: unset;
+  }
+`;
+
+export const Category = styled.div`
+  border-right: 1px solid #e5e3e8;
+  width: 100%;
+`;

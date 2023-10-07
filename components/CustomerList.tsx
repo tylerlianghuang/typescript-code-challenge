@@ -1,12 +1,19 @@
 import { CustomerListType } from '../types/types';
 import { Layout, Card, Stack, Text, Button } from './styles';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
 const StyledH2 = styled.h2`
   padding: 1.5rem 0px 1rem;
 `;
 
 const CustomerList = (props: CustomerListType) => {
+  const router = useRouter();
+
+  const showOrderDetailsHandler = (id: string) => {
+    router.push(`/${id}`);
+  };
+
   return (
     <Layout>
       {props.customers.map((customer) => (
@@ -21,7 +28,7 @@ const CustomerList = (props: CustomerListType) => {
               Customer id:
               <strong>{customer.id}</strong>
             </Text>
-            <Button>Order details</Button>
+            <Button onClick={() => showOrderDetailsHandler(customer.id)}>Order details</Button>
           </Stack>
         </Card>
       ))}

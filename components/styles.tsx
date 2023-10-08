@@ -51,7 +51,7 @@ export const Button = styled.button`
   min-height: 3rem;
   min-width: 3rem;
   border-radius: 1.5rem;
-  background-color: transparent;
+  background-color: #fb7652;
   cursor: pointer;
 
   :hover {

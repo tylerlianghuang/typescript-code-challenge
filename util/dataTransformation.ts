@@ -1,6 +1,6 @@
 import fsPromises from 'fs/promises';
 import path from 'path';
-import { CustomerDetailsType, OrderDetailsType } from '@/types/types';
+import { CustomerDetailsType, OrderDetailsType, RawDataType } from '@/types/types';
 
 export const getFormatResult = async () => {
   const formattedOrders = [] as Array<OrderDetailsType>;
@@ -10,7 +10,7 @@ export const getFormatResult = async () => {
 
   const jsonData = await fsPromises.readFile(filePath);
 
-  const objectData = JSON.parse(jsonData.toString());
+  const objectData = JSON.parse(jsonData.toString()) as Array<RawDataType>;
 
   for (const obj of objectData) {
     formattedCustomers.push(obj.customer);

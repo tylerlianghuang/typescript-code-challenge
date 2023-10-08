@@ -22,3 +22,15 @@ export type OrderDetailsType = {
 export interface CustomerListType {
   customers: Array<CustomerDetailsType>;
 }
+
+export interface RawDataType {
+  id: string;
+  vendor: string;
+  customer: CustomerDetailsType;
+  order: {
+    [key: string]: {
+      quantity: number;
+      price: number;
+    };
+  };
+}

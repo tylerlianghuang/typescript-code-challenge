@@ -12,7 +12,7 @@ const BackgroundCircle = styled.div`
   overflow: auto;
   position: absolute;
   top: 44vh;
-  left: 50vw;
+  left: 46vw;
 
   @keyframes spinner-line-fade-default {
     0%,

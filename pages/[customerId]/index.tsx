@@ -1,50 +1,69 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 import { OrderDetailsType } from '../../types/types';
 import { connectToDatabase } from '../../lib/db';
 import { Card, Inline, Stack, Text, Category, Button } from '../../components/styles';
+import { ProgressLoader } from '../../components/ProgressLoader';
 
 const OrderDetailsPage = (props: { orderDetails: OrderDetailsType }) => {
+  const [buttonClicked, setButtonClicked] = useState(false);
   const router = useRouter();
+  const { orderDetails } = props;
+
+  if (!orderDetails) {
+    return <ProgressLoader />;
+  }
 
   return (
     <Fragment>
       <Head>
-        <title>{props.orderDetails.customer}</title>
+        <title>{orderDetails.customer}</title>
         <meta
           name="description"
-          content={`order creation date ${props.orderDetails.date} and its vendor ${props.orderDetails.vendor}`}
+          content={`order creation date ${orderDetails.date} and its vendor ${orderDetails.vendor}`}
         />
       </Head>
-      <Card>
-        <Stack>
-          <Text>
-            Vendor:
-            <strong>{props.orderDetails.vendor}</strong>
-          </Text>
-          <Text>
-            Date:
-            <strong>{props.orderDetails.date}</strong>
-          </Text>
-          <Text>
-            Customer:
-            <strong>{props.orderDetails.customer}</strong>
-          </Text>
-          <Inline>
-            {props.orderDetails.order.map((order) => (
-              <Category key={order.item}>
-                <strong>{order.item}</strong>
-                <p>{`quantity: ${order.quantity}`}</p>
-                <p>{`price: ${order.price}`}</p>
-                <p>{`revenue: ${order.revenue}`}</p>
-              </Category>
-            ))}
-          </Inline>
-          <Button onClick={() => router.replace('/')}>Back</Button>
-        </Stack>
-      </Card>
+      {buttonClicked ? (
+        <ProgressLoader />
+      ) : (
+        <Card>
+          <Stack>
+            <Text>
+              Vendor:
+              <strong>{orderDetails.vendor}</strong>
+            </Text>
+            <Text>
+              Date:
+              <strong>{orderDetails.date}</strong>
+            </Text>
+            <Text>
+              Customer:
+              <strong>{orderDetails.customer}</strong>
+            </Text>
+            <Inline>
+              {orderDetails.order.map((order) => (
+                <Category key={order.item}>
+                  <strong>{order.item}</strong>
+                  <p>{`quantity: ${order.quantity}`}</p>
+                  <p>{`price: ${order.price}`}</p>
+                  <p>{`revenue: ${order.revenue}`}</p>
+                </Category>
+              ))}
+            </Inline>
+            <Button
+              type="button"
+              onClick={() => {
+                setButtonClicked(true);
+                router.replace('/');
+              }}
+            >
+              {buttonClicked ? 'Loading...' : 'Back'}
+            </Button>
+          </Stack>
+        </Card>
+      )}
     </Fragment>
   );
 };
@@ -60,7 +79,7 @@ export const getStaticPaths = async () => {
   client.close();
 
   return {
-    fallback: 'blocking',
+    fallback: true,
     paths: candidates.map((candidate: { customer: string }) => ({
       params: { customerId: candidate.customer }
     }))
@@ -80,6 +99,10 @@ export const getStaticProps = async (context: { params: { customerId: string } }
   });
 
   client.close();
+
+  if (!selectedCandidate) {
+    return { notFound: true };
+  }
 
   return (
     selectedCandidate && {

@@ -1,11 +1,14 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import { OrderDetailsType } from '../../types/types';
 import { connectToDatabase } from '../../lib/db';
-import { Card, Inline, Stack, Text, Category } from '../../components/styles';
+import { Card, Inline, Stack, Text, Category, Button } from '../../components/styles';
 
 const OrderDetailsPage = (props: { orderDetails: OrderDetailsType }) => {
+  const router = useRouter();
+
   return (
     <Fragment>
       <Head>
@@ -39,6 +42,7 @@ const OrderDetailsPage = (props: { orderDetails: OrderDetailsType }) => {
               </Category>
             ))}
           </Inline>
+          <Button onClick={() => router.replace('/')}>Back</Button>
         </Stack>
       </Card>
     </Fragment>

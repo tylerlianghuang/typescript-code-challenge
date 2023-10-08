@@ -12,6 +12,7 @@ export type Order = {
 };
 
 export type OrderDetailsType = {
+  id: string;
   vendor: string;
   date: string;
   customer: string;

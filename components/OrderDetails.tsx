@@ -39,6 +39,7 @@ const OrderDetails = (props: OrderDetailsType) => {
             </Inline>
             <Button
               type="button"
+              aria-label="back to the home page"
               onClick={() => {
                 setButtonClicked(true);
                 router.push('/');

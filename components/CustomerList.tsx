@@ -32,6 +32,7 @@ const CustomerList = (props: CustomerListType) => {
                   <strong data-testid="id">{customer.id}</strong>
                 </Text>
                 <Button
+                  aria-label={`Open order details page for customer: ${customer.id}`}
                   onClick={() => {
                     setButtonClicked(true);
                     router.push(`/${customer.id}`);

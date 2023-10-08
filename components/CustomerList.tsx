@@ -21,20 +21,20 @@ const CustomerList = (props: CustomerListType) => {
         <Layout>
           {props.customers.map((customer) => (
             <Card key={customer.id}>
-              <StyledH2>Name: {customer.name}</StyledH2>
+              <StyledH2 data-testid="name">Name: {customer.name}</StyledH2>
               <Stack>
                 <Text>
                   Customer address:
-                  <strong>{customer.address}</strong>
+                  <strong data-testid="address">{customer.address}</strong>
                 </Text>
                 <Text>
                   Customer id:
-                  <strong>{customer.id}</strong>
+                  <strong data-testid="id">{customer.id}</strong>
                 </Text>
                 <Button
                   onClick={() => {
                     setButtonClicked(true);
-                    router.push(customer.id);
+                    router.push(`/${customer.id}`);
                   }}
                 >
                   Order details

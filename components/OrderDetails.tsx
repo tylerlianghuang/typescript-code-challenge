@@ -17,15 +17,15 @@ const OrderDetails = (props: OrderDetailsType) => {
           <Stack>
             <Text>
               Vendor:
-              <strong>{props.vendor}</strong>
+              <strong data-testid="name">{props.vendor}</strong>
             </Text>
             <Text>
               Date:
-              <strong>{props.date}</strong>
+              <strong data-testid="date">{props.date}</strong>
             </Text>
             <Text>
               Customer:
-              <strong>{props.customer}</strong>
+              <strong data-testid="customer">{props.customer}</strong>
             </Text>
             <Inline>
               {props.order.map((order) => (
@@ -41,7 +41,7 @@ const OrderDetails = (props: OrderDetailsType) => {
               type="button"
               onClick={() => {
                 setButtonClicked(true);
-                router.replace('/');
+                router.push('/');
               }}
             >
               Back

@@ -1,15 +1,12 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 
 import { OrderDetailsType } from '../../types/types';
 import { connectToDatabase } from '../../lib/db';
-import { Card, Inline, Stack, Text, Category, Button } from '../../components/styles';
 import { ProgressLoader } from '../../components/ProgressLoader';
+import OrderDetails from '@/components/OrderDetails';
 
 const OrderDetailsPage = (props: { orderDetails: OrderDetailsType }) => {
-  const [buttonClicked, setButtonClicked] = useState(false);
-  const router = useRouter();
   const { orderDetails } = props;
 
   if (!orderDetails) {
@@ -25,45 +22,7 @@ const OrderDetailsPage = (props: { orderDetails: OrderDetailsType }) => {
           content={`order creation date ${orderDetails.date} and its vendor ${orderDetails.vendor}`}
         />
       </Head>
-      {buttonClicked ? (
-        <ProgressLoader />
-      ) : (
-        <Card>
-          <Stack>
-            <Text>
-              Vendor:
-              <strong>{orderDetails.vendor}</strong>
-            </Text>
-            <Text>
-              Date:
-              <strong>{orderDetails.date}</strong>
-            </Text>
-            <Text>
-              Customer:
-              <strong>{orderDetails.customer}</strong>
-            </Text>
-            <Inline>
-              {orderDetails.order.map((order) => (
-                <Category key={order.item}>
-                  <strong>{order.item}</strong>
-                  <p>{`quantity: ${order.quantity}`}</p>
-                  <p>{`price: ${order.price}`}</p>
-                  <p>{`revenue: ${order.revenue}`}</p>
-                </Category>
-              ))}
-            </Inline>
-            <Button
-              type="button"
-              onClick={() => {
-                setButtonClicked(true);
-                router.replace('/');
-              }}
-            >
-              {buttonClicked ? 'Loading...' : 'Back'}
-            </Button>
-          </Stack>
-        </Card>
-      )}
+      <OrderDetails {...orderDetails} />
     </Fragment>
   );
 };

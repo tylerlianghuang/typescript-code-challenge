@@ -56,7 +56,7 @@ export default function Home(props: CustomerListType) {
         <title>Tyler&apos;s shop</title>
         <meta name="description" content="an upcoming online service company for order management" />
       </Head>
-      <CustomerList customers={props.customers} />
+      <CustomerList customers={customers} />
     </>
   );
 }

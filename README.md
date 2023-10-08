@@ -32,7 +32,7 @@
 
 ## How to run
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) responsive project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) and uses MongoDB Atlas for the datastore.
 
 First, run the development server:
 
@@ -47,6 +47,37 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+Run the Jest test:
+
+```
+npm run test
+```
+
+Run the Cypress test:
+
+```
+npm run test:cypress
+```
+
+Run the Cypress test with the LaunchPad:
+
+```
+npm run test:cypress:open
+```
+
+## Troubleshoot
+
+1. MongoDB connection timeout issue.
+
+- It should be related to IP whitelisting. I have given access to all IPs and tested on a different machine with Mobile hotspot. If problem persists, maybe have a look local `etc/hosts` or other local config files.
+
+<details>
+<summary>MongoDB IP setting</summary>
+
+![](/data/Screenshot%202023-10-08%20at%205.09.21%20pm.png)
+
+</details>
 
 ## TypeScript Challenge Instructions
 

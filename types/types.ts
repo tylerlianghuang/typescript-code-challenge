@@ -26,6 +26,7 @@ export interface CustomerListType {
 export interface RawDataType {
   id: string;
   vendor: string;
+  date: string;
   customer: CustomerDetailsType;
   order: {
     [key: string]: {

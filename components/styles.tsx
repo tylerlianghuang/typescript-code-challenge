@@ -2,14 +2,10 @@ import styled from 'styled-components';
 
 export const Card = styled.div`
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 1rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0.0625rem 0.25rem 0px;
   border-radius: 0.75rem;
   background-color: #ffffff;
-
-  @media only screen and (min-width: 501px) {
-    margin-bottom: unset;
-  }
 `;
 
 export const Text = styled.p`
@@ -21,8 +17,8 @@ export const Text = styled.p`
 `;
 
 export const Layout = styled.main`
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
   padding-left: 1rem;
   padding-right: 1rem;
 

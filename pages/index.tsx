@@ -3,6 +3,7 @@ import { CustomerListType } from '@/types/types';
 import { connectToDatabase } from '../lib/db';
 import CustomerList from '@/components/CustomerList';
 import { getFormatResult } from '../util/dataTransformation';
+import { ProgressLoader } from '../components/ProgressLoader';
 
 export async function getStaticProps() {
   const formattedResult = await getFormatResult();
@@ -46,7 +47,7 @@ export default function Home(props: CustomerListType) {
   const { customers } = props;
 
   if (!customers) {
-    return <p>Loading...</p>;
+    return <ProgressLoader />;
   }
 
   return (
